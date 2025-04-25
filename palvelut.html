@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palvelut ja Hinnat - Healthy BodyPro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Palvelut-sivun lisätyyli */
+        .page-header {
+            height: 60vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            z-index: 1;
+        }
+        
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-header h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1s both;
+        }
+        
+        .page-header p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s 0.3s both;
+        }
+        
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            margin-top: 30px;
+        }
+        
+        .price-list-container {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 50px;
+            margin-top: 50px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(247,245,243,0.5) 100%);
+        }
+        
+        .price-list-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+        
+        .price-list {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        
+        .price-list th, .price-list td {
+            padding: 20px 25px;
+            text-align: left;
+        }
+        
+        .price-list tbody tr {
+            border-bottom: none;
+            background-color: white;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .price-list tbody tr:nth-child(odd) {
+            background-color: rgba(247, 245, 243, 0.5);
+        }
+        
+        .price-list tbody tr::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(187, 145, 121, 0.1), rgba(187, 145, 121, 0.05));
+        }
+        
+        .price-list th {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .price-list th:first-child {
+            border-radius: var(--radius) 0 0 0;
+        }
+        
+        .price-list th:last-child {
+            border-radius: 0 var(--radius) 0 0;
+        }
+        
+        .price-list tr:hover {
+            background-color: white !important;
+            transform: scale(1.01);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            z-index: 2;
+            position: relative;
+        }
+        
+        .price-list tr:last-child {
+            border-bottom: none;
+        }
+        
+        .price-list .price {
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: right;
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .price-list .price::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -40px;
+            width: 30px;
+            height: 1px;
+            background: rgba(187, 145, 121, 0.2);
+            display: none;
+        }
+        
+        .price-list tr:hover .price {
+            color: var(--accent-color);
+        }
+        
+        .price-list-container .section-title {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .price-list-container .section-title::after {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+        }
+        
+        .service-description {
+            margin-bottom: 70px;
+            position: relative;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+        
+        .service-description:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-description::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+        
+        .service-description h3 {
+            color: var(--dark-color);
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .service-description p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
+        
+        .highlight {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .cta-section {
+            margin-top: -5px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/pattern.png');
+            opacity: 0.1;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            position: relative;
+            z-index: 5;
+            font-weight: 600;
+        }
+        
+        .btn-white:hover {
+            background-color: white;
+            color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-large {
+            padding: 16px 36px;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .services-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .price-list-container {
+                padding: 30px;
+            }
+            
+            .page-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header {
+                min-height: 400px;
+                height: 50vh;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                font-size: 1.2rem;
+            }
+            
+            .price-list th, .price-list td {
+                padding: 15px;
+            }
+            
+            .service-description {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .price-list-container {
+                padding: 20px;
+            }
+            
+            .price-list th, .price-list td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .price-list .price {
+                font-size: 1rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-section p {
+                font-size: 1rem;
+            }
+            
+            .btn-large {
+                padding: 14px 30px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .wave-divider {
+            line-height: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar scrolled">
+            <div class="container">
+                <div class="logo">
+                    <h1>Healthy BodyPro</h1>
+                </div>
+                <div class="menu-toggle" onclick="document.querySelector('.nav-menu').classList.toggle('active'); this.classList.toggle('active');">
+                    <i></i>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Etusivu</a></li>
+                    <li><a href="palvelut.html" class="active">Palvelut</a></li>
+                    <li><a href="index.html#arvostelut">Asiakaskokemukset</a></li>
+                    <li><a href="index.html#tietoa">Tietoa meistä</a></li>
+                    <li><a href="index.html#yhteystiedot">Yhteystiedot</a></li>
+                    <li class="nav-cta"><a href="https://varaa.timma.fi/healthybodypro" target="_blank" class="btn btn-primary btn-sm">Varaa aika</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Koe Ainutlaatuiset Palvelumme</h1>
+            <p>Luksushoitoja kehon ja mielen tasapainoon</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Ainutlaatuiset Hoitopalvelut</h2>
+            
+            <div class="services-container">
+                <div class="service-description fade-in">
+                    <h3>Kobido-kasvohieronta</h3>
+                    <p><span class="highlight">Kobido on muinainen japanilainen kasvojen hierontatekniikka</span>, joka on kehitetty 15. vuosisadalla ja sitä pidetään yhtenä vanhimmista itämaisista kauneudenhoidon menetelmistä. Japanilainen sana "Kobido" tarkoittaa "vanhaa kauneuden tietä".</p>
+                    <p>Tämä ylellinen hoito yhdistää erilaisia hierontatekniikoita, akupressuuria ja lymfakiertoa stimuloivia liikkeitä. Kobido-hieronta aktivoi kasvojen lihaksia, parantaa verenkiertoa ja edistää kollageenin tuotantoa. Se on luonnollinen vaihtoehto kasvojen kiinteyttämiseen, eikä siihen liity kemiallisia aineita tai kirurgisia toimenpiteitä.</p>
+                </div>
+
+                <div class="service-description fade-in stagger-1">
+                    <h3>Kuuma kivihieronta</h3>
+                    <p><span class="highlight">Kuuma kivihieronta on hoitomuoto</span>, jossa käytetään sileitä, lämmitettyjä kiviä hieronnan apuvälineinä. Perinteisesti hieronnassa käytetään basalttikiviä, jotka on lämmitetty 50-60°C lämpötilaan. Kiviä sijoitetaan kehon eri alueille ja niitä käytetään myös hierontaan.</p>
+                    <p>Kivien lämpö auttaa rentouttamaan lihaksia, lievittämään stressiä ja parantamaan verenkiertoa. Lämpö kulkeutuu syvälle lihaksiin, mikä auttaa vapauttamaan jännitystä ja lievittämään kipua. Hoito on erinomainen vaihtoehto henkilöille, jotka kärsivät lihaskivuista, stressistä, unettomuudesta tai väsymyksestä.</p>
+                </div>
+
+                <div class="service-description fade-in stagger-2">
+                    <h3>Syväkudoshieronta</h3>
+                    <p><span class="highlight">Syväkudoshieronta on voimakas hierontatekniikka</span>, jossa käytetään hitaita, voimakkaita painalluksia ja venytyksiä lihaksiston syvimpien kerrosten ja faskian (sidekudoksen) käsittelyyn. Tämä hierontamuoto keskittyy kroonisten lihasjännitysten ja -kipujen vapauttamiseen.</p>
+                    <p>Syväkudoshieronta on erityisen hyödyllinen henkilöille, jotka kärsivät kroonisista kivuista, lihasjäykkyydestä, toistuvista vammoista tai fyysisesti raskaasta työstä johtuvista ongelmista. Se voi auttaa parantamaan ryhtiä, lisäämään liikelaajuutta ja vähentämään tulehdusta kehossa.</p>
+                </div>
+
+                <div class="service-description fade-in stagger-3">
+                    <h3>Aromahieronta</h3>
+                    <p><span class="highlight">Aromahieronta on rentouttava hoitomuoto</span>, jossa yhdistyvät klassinen hieronta ja eteeristen öljyjen terapeuttiset vaikutukset. Jokaiselle asiakkaalle valitaan yksilöllisesti soveltuvat eteeriset öljyt, jotka sekoitetaan perusöljyyn ennen hoitoa.</p>
+                    <p>Eteeriset öljyt imeytyvät ihohuokosten kautta ja hengitysilman mukana, tarjoten kokonaisvaltaisen kokemuksen. Aromahieronta voi auttaa lievittämään stressiä, parantamaan mielialaa, tukemaan immuunijärjestelmää ja edistämään hyvää unta. Se sopii erinomaisesti rentoutumiseen ja yleisen hyvinvoinnin lisäämiseen.</p>
+                </div>
+            </div>
+
+            <div class="price-list-container fade-in">
+                <h2 class="section-title">Hintalista</h2>
+                
+                <table class="price-list">
+                    <thead>
+                        <tr>
+                            <th>Palvelu</th>
+                            <th>Kesto</th>
+                            <th>Hinta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kobido-kasvohieronta</td>
+                            <td>60 min</td>
+                            <td class="price">79 €</td>
+                        </tr>
+                        <tr>
+                            <td>Kobido-kasvohieronta + kaulan alue</td>
+                            <td>75 min</td>
+                            <td class="price">89 €</td>
+                        </tr>
+                        <tr>
+                            <td>Kuuma kivihieronta</td>
+                            <td>60 min</td>
+                            <td class="price">75 €</td>
+                        </tr>
+                        <tr>
+                            <td>Kuuma kivihieronta</td>
+                            <td>90 min</td>
+                            <td class="price">95 €</td>
+                        </tr>
+                        <tr>
+                            <td>Kuuma kivihieronta</td>
+                            <td>120 min</td>
+                            <td class="price">125 €</td>
+                        </tr>
+                        <tr>
+                            <td>Syväkudoshieronta</td>
+                            <td>60 min</td>
+                            <td class="price">69 €</td>
+                        </tr>
+                        <tr>
+                            <td>Syväkudoshieronta</td>
+                            <td>90 min</td>
+                            <td class="price">89 €</td>
+                        </tr>
+                        <tr>
+                            <td>Aromahieronta</td>
+                            <td>60 min</td>
+                            <td class="price">72 €</td>
+                        </tr>
+                        <tr>
+                            <td>Aromahieronta</td>
+                            <td>90 min</td>
+                            <td class="price">92 €</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    
+    <div class="wave-divider">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120">
+            <path fill="white" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+        </svg>
+    </div>
+    
+    <div class="cta-section">
+        <div class="container">
+            <h2>Varaa Aikasi Juuri Nyt</h2>
+            <p>Anna itsellesi lahja - hetki rentoutumiseen ja hyvinvointiin. Kokeneet ammattilaisemme odottavat sinua!</p>
+            <a href="https://varaa.timma.fi/healthybodypro" target="_blank" class="btn btn-white btn-large">Varaa Hoito</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Healthy BodyPro</h3>
+                    <p>Sinun polkusi terveyteen ja harmoniaan</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Pikalinkit</h4>
+                    <ul>
+                        <li><a href="index.html">Etusivu</a></li>
+                        <li><a href="palvelut.html">Palvelut</a></li>
+                        <li><a href="index.html#arvostelut">Asiakaskokemukset</a></li>
+                        <li><a href="index.html#tietoa">Tietoa meistä</a></li>
+                        <li><a href="index.html#yhteystiedot">Yhteystiedot</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Yhteystiedot</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Klaneettitie 6-8, Helsinki</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+358442008400">+358 44 200 8400</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:nadetis@gmail.com">nadetis@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 - 2025 Healthy BodyPro. Kaikki oikeudet pidätetään.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="call-to-action">
+        <a href="https://varaa.timma.fi/healthybodypro" target="_blank" class="cta-button" aria-label="Varaa aika">
+            <i class="fas fa-calendar-check"></i>
+        </a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

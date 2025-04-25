@@ -1,0 +1,11 @@
+Tarvittavat kuvat Healthy BodyPro -sivustolle:
+
+1. hero-bg.jpg - Taustakuva etusivulle, hierontaan liittyvä tunnelmallinen kuva (1920x1080px)
+2. kobido.jpg - Kuva Kobido-kasvohieronnasta (800x600px)
+3. hot-stone.jpg - Kuva kuumakivihieronnasta (800x600px)
+4. deep-tissue.jpg - Kuva syväkudoshieronnasta (800x600px)
+5. about-us.jpg - Kuva "Tietoa meistä" -osiota varten, esim. hierojasta tai hoitotilasta (800x600px)
+
+Lataa korkealaatuiset kuvat ja nimeä ne nimen mukaisesti. 
+Kuvien tulisi olla ammattimaisesti otettuja, tunnelmallisia ja houkuttelevia.
+Värimaailman tulisi sopia sivuston maanläheiseen (beige, ruskea, valkoinen) värimaailmaan. 
