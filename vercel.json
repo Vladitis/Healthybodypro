@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/palvelut",
+      "destination": "/palvelut.html"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true
+} 
